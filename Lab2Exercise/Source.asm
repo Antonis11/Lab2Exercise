@@ -3,7 +3,7 @@ INCLUDE Irvine32.inc
 
 .data
 
-mCalculating    BYTE "Calculating...",odh,oah,0
+mCalculating    BYTE "Calculating...",0dh,0ah,0
 mAccessElement  BYTE "The value offset the element a[2,2] is : ",0
 mResultSum      BYTE "The sum a[2,2]+z= :",0
 mResultDiff     BYTE "The sum a[2,2]-z= :",0
@@ -53,6 +53,14 @@ main PROC
     call WriteString                     ; Show the message on screen 
     call WriteInt                        ; Show the element value on screen 
     call Crlf                            ; Go to next line
+
+    ; *** ASKISI 2 ***
+    mov eax,[array1+13*4]                 ; mov designated array element to ECX using DIRECT ADDRESSING
+    mov edx, OFFSET mAccessElement       ; Load EDX the mAccessElement string OFFSET 
+    call WriteString                     ; Show the message on screen 
+    call WriteInt                        ; Show the element value on screen 
+    call Crlf                            ; Go to next line
+
 
     exit
 main ENDP
